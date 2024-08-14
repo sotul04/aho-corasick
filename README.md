@@ -53,18 +53,18 @@ npm run dev
   <b>Fig 1.</b> Main page
 <br>
 </div>
-
+<br><br>
 <div align=center>
 <img src="./docs/result.png" width="500px">
 <br>
   <b>Fig 2.</b> Result  
 <br>
 </div>
-
+<br><br>
 <div align=center>
 <img src="./docs/automaton.png" width="600pxpx">
 <br>
-  <b>Fig 23.</b> Automaton Visualizer  
+  <b>Fig 3.</b> Automaton Visualizer  
 <br>
 </div>
 
