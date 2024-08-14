@@ -1,4 +1,4 @@
-class Vertex {
+export class Vertex {
     next: Map<string, number>;
     output: boolean;
     parent: number;
@@ -29,14 +29,14 @@ export class AhoCorasick {
         this.patterns = patterns;
     }
 
-    private getCharCodeInsensitive(c: string): string {
+    getCharCodeInsensitive(c: string): string {
         if (c >= 'A' && c <= 'Z') {
             return c.toLowerCase();
         }
         return c;
     }
 
-    private addString(s: string) {
+    addString(s: string) {
         let currVertex = 0;
         for (const ch of s) {
             const code = this.getCharCodeInsensitive(ch);
@@ -51,7 +51,7 @@ export class AhoCorasick {
         this.trie[currVertex].output = true;
     }
 
-    private getLink(currVertex: number): number {
+    getLink(currVertex: number): number {
         if (this.trie[currVertex].link === -1) {
             if (currVertex === 0 || this.trie[currVertex].parent === 0) {
                 this.trie[currVertex].link = 0;
@@ -85,9 +85,6 @@ export class AhoCorasick {
             currVertex = this.go(currVertex, this.text[i]);
             for (let tempVertex = currVertex; tempVertex !== 0; tempVertex = this.getLink(tempVertex)) {
                 if (this.trie[tempVertex].output) {
-                    // if (!patternMatch.has(this.trie[tempVertex].str)) {
-                    //     patternMatch.set(this.trie[tempVertex].str, []);
-                    // }
                     patternMatch.get(this.trie[tempVertex].str)!.push([i - this.trie[tempVertex].str.length + 1, i]);
                 }
             }

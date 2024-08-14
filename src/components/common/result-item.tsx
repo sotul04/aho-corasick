@@ -7,7 +7,7 @@ interface ResultItemProps {
 
 export function ResultItem({ pattern, appearances }: ResultItemProps) {
     
-    return <div className="rounded p-3 shadow-md grid grid-cols-3">
+    return <div className="rounded p-3 shadow-md grid grid-cols-3 text-sm font-normal">
         <p >{pattern}</p>
         <p >{appearances.length}</p>
         <div className="flex flex-wrap gap-2">

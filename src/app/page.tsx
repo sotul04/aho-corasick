@@ -9,6 +9,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { AhoCorasick } from "@/components/model/AhoCorasick";
 import { ResultItem } from "@/components/common/result-item";
 import { Result } from "@/components/common/result";
+import Graph from "react-graph-vis";
+import { Vertex } from "@/components/model/AhoCorasick";
+import Automaton from "@/components/common/automaton";
 
 interface TextProps {
   text: string;
@@ -29,8 +32,8 @@ export default function Home() {
 
   async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const selectedFile = event.target.files?.[0];
+    setSolusion(null);
     if (selectedFile) {
-      // do file extraction and validation
       try {
         const parsedTextCase = await getInputCase(selectedFile);
         setTextState(parsedTextCase);
@@ -66,8 +69,8 @@ export default function Home() {
 
   return (
     <>
-      <section className="flex flex-col mt-10 item-center container justify-center">
-        <div className="container my-4">
+      <section className="w-[65%] min-w-[400px] flex flex-col mt-10 item-center container">
+        <div className="container mt-4">
           <Label htmlFor="input" className="inline-flex">
             Upload your text and query as .json file
           </Label>
@@ -80,23 +83,32 @@ export default function Home() {
             onChange={handleFileChange}
           />
           {parsingMessage && <p className="text-sm text-red-500 mb-4 max-w-[300px]">{parsingMessage}</p>}
-          <p className="text-sm">The .json file must has format like this example.</p>
+          <p className="text-sm mt-3">The .json file must has format like this example.</p>
           <div className="rounded-md bg-gray-200 py-3 px-4 text-sm">
             <p>{"{"}</p>
             <p className="pl-4">"text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."</p>
             <p className="pl-4">{"\"pattern\": [ \"query1\", \"query2\", \"query3\", ... ]"}</p>
             <p>{"}"}</p>
           </div>
+          {textState && <>
+            <p className="text-sm mt-2 font-bold">Text from file:</p>
+            <div className="rounded-md bg-gray-100 py-3 px-4 text-sm font-semibold">
+              <p>{textState.text}</p>
+            </div>
+          </>}
           <Button className="my-4" disabled={textState === null} onClick={() => handleClickSearch()}>Search</Button>
         </div>
       </section>
       {solution &&
-        <section className="flex flex-col mt-10 item-center container justify-center gap-4">
+        <section className="flex flex-col w-[65%] min-w-[400px] mt-10 item-center container justify-center gap-4">
           <div className="container">
             <Result result={solution} />
           </div>
         </section>
       }
+      { solution && textState && <section className="w-[90%]">
+        <Automaton text={textState.text} patterns={textState.patterns} />
+      </section>}
     </>
   );
 }

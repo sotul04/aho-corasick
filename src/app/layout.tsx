@@ -20,8 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <main className="mx-auto">
         {children}
         <Toaster />
+        </main>
         </body>
     </html>
   );
