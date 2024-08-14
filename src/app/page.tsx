@@ -106,7 +106,8 @@ export default function Home() {
           </div>
         </section>
       }
-      { solution && textState && <section className="w-[90%]">
+      { solution && textState && <section className="w-[90%] mx-auto">
+        <h2 className="text-center text-xl font-serif font-semibold mt-5">Automaton</h2>
         <Automaton text={textState.text} patterns={textState.patterns} />
       </section>}
     </>

@@ -102,7 +102,7 @@ export default function Automaton({ text, patterns }: TextProps) {
     };
 
     return (
-        <div style={{ height: "1000px" }}>
+        <div style={{ height: "750px" }}>
             <Graph graph={graph} options={options} events={events} style={{ height: "100%" }} />
         </div>
     );
