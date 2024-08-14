@@ -1,5 +1,7 @@
 # Aho-Corasick
 
+> Author: Suthasoma Mahardhika Munthe 
+
 The Aho-Corasick algorithm is a string-searching algorithm used to efficiently find multiple patterns (or keywords) in a given text simultaneously. It is particularly effective when you need to search for several strings in a single pass through the text. Here's how it works:
 
 #### **1. Constructing the Trie**
