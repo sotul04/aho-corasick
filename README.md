@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Aho-Corasick
 
-## Getting Started
+The Aho-Corasick algorithm is a string-searching algorithm used to efficiently find multiple patterns (or keywords) in a given text simultaneously. It is particularly effective when you need to search for several strings in a single pass through the text. Here's how it works:
 
-First, run the development server:
+#### **1. Constructing the Trie**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Build a Trie:** First, all the patterns are inserted into a Trie (prefix tree). Each node in the Trie represents a character of the patterns. The edges between nodes represent transitions based on characters.
+
+#### **2. Building the Failure Links**
+
+- **Failure Function:** After building the Trie, the algorithm constructs failure links (or "failure functions") for each node. These links help in determining the next state (node) if a character mismatch occurs during the search. Essentially, they allow the algorithm to efficiently backtrack to the longest possible suffix that matches the pattern.
+
+#### **3. Searching**
+
+- **Search Phase:** Using the constructed Trie and failure links, the algorithm processes the text. For each character in the text, it follows the transitions in the Trie and uses the failure links to handle mismatches. This way, it finds all occurrences of the patterns in linear time relative to the size of the text.
+
+#### **Key Features:**
+
+- **Efficiency:** The Aho-Corasick algorithm efficiently handles multiple patterns in linear time relative to the size of the text and the total length of all patterns combined.
+- **Output Links:** During the search, it also identifies where in the text each pattern occurs.
+
+#### **Applications:**
+
+- **Text Processing:** Used in applications like text search, spam filtering, and malware detection where multiple patterns need to be searched simultaneously.
+- **Networking:** Employed in network intrusion detection systems to search for known attack signatures.
+
+In summary, the Aho-Corasick algorithm is a powerful and efficient way to search for multiple patterns in a text, leveraging Trie data structures and failure links to handle mismatches effectively.
+
+
+## How to Run
+
+> Make sure you have installed npm and Node.JS to run this program
+
+Clone or download this project. Go to the root directory of this project.
+
+Then, install all the dependencies using this command
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the program using this command
+```
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<div align=center>
+<img src="./docs/main.png" width="700px">
+<br>
+  <b>Fig 1.</b> Main page
+<br>
+</div>
 
-## Learn More
+<div align=center>
+<img src="./docs/result.png" width="500px">
+<br>
+  <b>Fig 2.</b> Result  
+<br>
+</div>
 
-To learn more about Next.js, take a look at the following resources:
+<div align=center>
+<img src="./docs/automaton.png" width="600pxpx">
+<br>
+  <b>Fig 23.</b> Automaton Visualizer  
+<br>
+</div>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Bonus Worked
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Highlight Index
+- Automaton visualizer
